@@ -5,20 +5,30 @@ import {
   setSearchType,
   setYear,
 } from "../../redux/movies-slice";
+import { useEffect, useState } from "react";
 
 function FilterSection() {
-  const searchKey = useSelector((state) => state.movies.searchKey);
+  const [key, setKey] = useState("Pokemon");
   const page = useSelector((state) => state.movies.page);
   const year = useSelector((state) => state.movies.year);
   const searchType = useSelector((state) => state.movies.searchType);
   const totalResults = useSelector((state) => state.movies.totalResults);
   const dispatch = useDispatch();
+  useEffect(() => {
+    // after 500ms of user inactivity, update the search key
+    const timeout = setTimeout(() => {
+      dispatch(setSearchKey(key));
+    }, 500);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [key, dispatch]);
   return (
     <div
       style={{
-        width: "clamp(300px, 30%, 500px)",
+        width: "clamp(300px, 40%, 500px)",
       }}
-      className="h-full bg-gray-200 p-4 flex flex-col gap-4"
+      className="h-full bg-[#F7F7F5] p-4 flex flex-col gap-4"
     >
       {/* 
 			Textfield üzerinden filtreleme yapılacak.
@@ -31,8 +41,10 @@ function FilterSection() {
         id="search"
         type="text"
         className="w-full h-10 py px-2"
-        value={searchKey ?? ""}
-        onChange={(e) => dispatch(setSearchKey(e.target.value))}
+        value={key ?? ""}
+        onChange={(e) => {
+          setKey(e.target.value);
+        }}
       />
       <label htmlFor="year">Year</label>
       <select
@@ -75,7 +87,6 @@ function FilterSection() {
       <h1 className="w-full font-bold">Total Results: {totalResults}</h1>
       <button
         disabled={page === 1}
-        className="w-full h-12 bg-gray-500 text-white font-bold rounded-md transition duration-300 hover:bg-gray-600 hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={() => {
           dispatch(setPage(1));
         }}
@@ -85,7 +96,6 @@ function FilterSection() {
       <div className="w-full flex gap-4 items-center justify-center">
         <button
           disabled={page === 1}
-          className="w-full h-16 bg-gray-500 text-white font-bold rounded-md transition duration-300 hover:bg-gray-600 hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => {
             dispatch(setPage(page - 1));
           }}
@@ -95,7 +105,6 @@ function FilterSection() {
         <h1 className="w-1/5 font-bold">{page}</h1>
         <button
           disabled={page === Math.ceil(totalResults / 10)}
-          className="w-full h-16 bg-gray-500 text-white font-bold rounded-md transition duration-300 hover:bg-gray-600 hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => {
             dispatch(setPage(page + 1));
           }}
