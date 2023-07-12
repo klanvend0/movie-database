@@ -41,18 +41,19 @@ function FilterSection() {
       <input
         id="search"
         type="text"
-        className="w-full h-10 py px-2"
+        className="w-full h-12 py-4 px-6"
         value={key ?? ""}
         onChange={(e) => {
           setKey(e.target.value);
         }}
+        placeholder="Search for a movie, series or episode"
       />
       <label htmlFor="year">Year</label>
       <select
         name="year"
         id="year"
         value={year ?? false}
-        className="w-full h-10 py px-2"
+        className="w-full h-12 py-4 px-6"
         onChange={(e) => {
           e.target.value === "false"
             ? dispatch(setYear(null))
@@ -73,7 +74,7 @@ function FilterSection() {
         value={searchType ?? false}
         name="type"
         id="type"
-        className="w-full h-10 py px-2"
+        className="w-full h-12 py-4 px-6"
         onChange={(e) => {
           e.target.value === "false"
             ? dispatch(setSearchType(null))
@@ -96,8 +97,9 @@ function FilterSection() {
       </button>
       <div className="w-full flex gap-4 items-center justify-center">
         <button
-          disabled={page === 1}
+          disabled={page === 1 || totalResults === 0}
           onClick={() => {
+            if (totalResults === 0) return;
             dispatch(setPage(page - 1));
           }}
         >
@@ -105,7 +107,7 @@ function FilterSection() {
         </button>
         <h1 className="w-1/5 font-bold">{page}</h1>
         <button
-          disabled={page === Math.ceil(totalResults / 10)}
+          disabled={page === Math.ceil(totalResults / 10) || totalResults === 0}
           onClick={() => {
             dispatch(setPage(page + 1));
           }}

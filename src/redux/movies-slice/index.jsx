@@ -9,12 +9,16 @@ const initialState = {
   year: null,
   page: 1,
   totalResults: 0,
+  error: null,
 };
 
 const moviesSlice = createSlice({
   name: "movies",
   initialState: initialState,
   reducers: {
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
     setMovies: (state, action) => {
       state.movies = action.payload;
     },
@@ -46,6 +50,7 @@ const moviesSlice = createSlice({
 export default moviesSlice;
 
 export const {
+  setError,
   setTotalResults,
   setPage,
   setMovies,
