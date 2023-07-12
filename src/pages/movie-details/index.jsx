@@ -26,7 +26,7 @@ function MovieDetailsPage() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       {loading ? (
-        <h1>Loading</h1>
+        <h1>Loading...</h1>
       ) : (
         <div className="max-w-md bg-white p-8 rounded shadow-md flex flex-col gap-4">
           <Link

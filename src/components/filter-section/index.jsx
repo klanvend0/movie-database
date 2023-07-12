@@ -60,10 +60,10 @@ function FilterSection() {
         }}
       >
         <option value={false}>All</option>
-        {[...Array(100)].map((_, i) => {
+        {[...Array(80)].map((_, i) => {
           return (
-            <option value={2021 - i} key={i}>
-              {2021 - i}
+            <option value={2023 - i} key={i}>
+              {2023 - i}
             </option>
           );
         })}
@@ -92,7 +92,7 @@ function FilterSection() {
           dispatch(setPage(1));
         }}
       >
-        Reset
+        Reset Page to 1
       </button>
       <div className="w-full flex gap-4 items-center justify-center">
         <button
