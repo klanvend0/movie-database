@@ -54,7 +54,7 @@ function MovieList() {
               Type {searchType || "any"} <br />
               Year {year || "any"}
             </h1>
-            <div className="w-full p-9 pt-16 h-fit flex flex-wrap gap-24 bg-white overflow-y-auto">
+            <div className="w-full pt-8 h-fit flex flex-wrap gap-24 bg-white overflow-y-auto">
               {movies.map((movie) => {
                 return (
                   <Link
@@ -73,11 +73,20 @@ function MovieList() {
                           ? "https://via.placeholder.com/200x280?text=No+Image"
                           : movie.Poster
                       }
-                      className="w-full h-[240px] object-cover"
+                      className="w-full object-cover"
                       alt={movie.Title}
                     />
-                    <h1>{movie.Title}</h1>
-                    <h2>{movie.Year}</h2>
+                    <h1
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        width: "100%",
+                      }}
+                    >
+                      {movie.Title}
+                    </h1>
+                    <h2 className="">{movie.Year}</h2>
                   </Link>
                 );
               })}
