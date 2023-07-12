@@ -37,7 +37,15 @@ function MovieDetailsPage() {
           </Link>
           <div className="flex items-center mb-4">
             <img
-              src={movieDetails.Poster}
+              onError={(e) => {
+                e.target.src =
+                  "https://via.placeholder.com/200x280?text=No+Image";
+              }}
+              src={
+                movieDetails.Poster === "N/A"
+                  ? "https://via.placeholder.com/200x280?text=No+Image"
+                  : movieDetails.Poster
+              }
               alt="Movie Poster"
               className="w-24 h-auto mr-4"
             />

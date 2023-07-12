@@ -23,6 +23,7 @@ function FilterSection() {
       clearTimeout(timeout);
     };
   }, [key, dispatch]);
+  // could add 500 ms delay for year,type,page as well but not gonna
   return (
     <div
       style={{
