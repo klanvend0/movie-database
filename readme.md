@@ -1,9 +1,13 @@
 Projeyi çalıştırmak için:
 
 1. Projeyi klonlayın.
+
 2. Klasörü açın.
+
 3. .env dosyasını oluşturun ve içine `VITE_API_KEY` değişkenini ekleyin.
+
 4. Root directory de `npm install` komutunu çalıştırın.
+
 5. Root directory de `npm run dev` komutunu çalıştırın.
 
 Notlar:
