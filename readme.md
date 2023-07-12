@@ -12,5 +12,6 @@ Projeyi çalıştırmak için:
 
 Notlar:
 
+    Projenin deploy edilmiş halini movie-database-vert.vercel.app adresinden görebilirsiniz.
     .env dosyasını .gitignore'a ekledim. Bu yüzden .env dosyası oluşturmanız gerekiyor. .env dosyası içine `VITE_API_KEY` değişkenini ekleyin ve değerine 3a5e050a yazın.
     Kullanılan omdb api search methodu kötü çalışıyor, arama sonuçları çok az geliyor. Belirli karakter sayısına kadar too many results harici bir şey döndürmüyor.
